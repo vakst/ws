@@ -42,8 +42,14 @@ php bin/messenger-server.php
 
 Commands
 ----------------------------------
+```bash
 php bin/messenger-client.php get-all-users
+
 php bin/messenger-client.php get-all-user-task=USERID
+
 php bin/messenger-client.php send-message=MESSAGEID task=TASKID message=MESSAGE
+
 php bin/messenger-client.php send-message=MESSAGEID message=MESSAGE
+
 php bin/messenger-client.php send-message=all message=MESSAGE
+```
