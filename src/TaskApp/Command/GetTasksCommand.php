@@ -26,7 +26,7 @@ class GetTasksCommand implements ICommand
 			throw new ConnectionException('UserId is requered');
 		}
 
-		connectws(Config::get()->getSection('ws')['uri'])->then(function($conn) use ($userId) {
+		connectws(Config::get()->getSection('ws')['protocol'].'://'.Config::get()->getSection('ws')['host'].':'.Config::get()->getSection('ws')['port'])->then(function($conn) use ($userId) {
 			$conn->send(json_encode(array('command' => 'get-tasks', 'userId' => $userId)));
 	        $conn->on('message', function($msg) use ($conn) {
 		            if (!empty($msg) && ($decodedArray = json_decode($msg, true)) && is_array($decodedArray)) {

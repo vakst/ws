@@ -22,7 +22,7 @@ class GetUsersCommand implements ICommand
 	 */
 	public function sendRequest(LaunchArgument $argument)
 	{
-		connectws(Config::get()->getSection('ws')['uri'])->then(function($conn) {
+		connectws(Config::get()->getSection('ws')['protocol'].'://'.Config::get()->getSection('ws')['host'].':'.Config::get()->getSection('ws')['port'])->then(function($conn) {
 			$conn->send(json_encode(array('command' => 'get-users')));
 	        $conn->on('message', function($msg) use ($conn) {
 		            if (!empty($msg) && ($decodedArray = json_decode($msg, true)) && is_array($decodedArray)) {

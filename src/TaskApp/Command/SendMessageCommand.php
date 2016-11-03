@@ -30,7 +30,7 @@ class SendMessageCommand implements ICommand
 		}
 		$taskId = $argument->getByName('task');
 
-		connectws(Config::get()->getSection('ws')['uri'])->then(function($conn) use ($userId, $taskId, $message) {
+		connectws(Config::get()->getSection('ws')['protocol'].'://'.Config::get()->getSection('ws')['host'].':'.Config::get()->getSection('ws')['port'])->then(function($conn) use ($userId, $taskId, $message) {
 			$conn->send(json_encode(array('command' => 'send-message', 'userId' => $userId, 'taskId' => $taskId, 'message' => $message)));
 	        $conn->on('message', function($msg) use ($conn) {
 		            if (!empty($msg) && ($decodedArray = json_decode($msg, true)) && is_array($decodedArray)) {

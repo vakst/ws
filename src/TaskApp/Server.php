@@ -25,7 +25,8 @@ class Server
 					new Messenger()
 				)
 			),
-			8000
+			Config::get()->getSection('ws')['port'],
+			Config::get()->getSection('ws')['host']
 		);
 		
 		$server->run();
