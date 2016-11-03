@@ -1,0 +1,12 @@
+{
+     "autoload": {
+        "psr-4": {
+            "": "src"
+        }
+    },
+    "require": {
+        "cboden/ratchet": "^0.3.5",
+          "ratchet/pawl": "^0.2.2",
+          "symfony/yaml": "^3.1"
+    }
+}
